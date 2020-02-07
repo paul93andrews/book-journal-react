@@ -1,0 +1,5 @@
+@import './styles.scss';
+
+.is-active {
+    font-weight: bold;
+}
