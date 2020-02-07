@@ -31,13 +31,10 @@ class Search extends React.Component {
             }
         }).then((res) => {
 
-            console.log(res);
-            // this.handleResults(res);
+        console.log(res);
 
         }).catch((error) => {
             alert("No results");
-            // const emptyBooks = []
-            // this.props.bookResults(emptyBooks);
         })
     }
 
