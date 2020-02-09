@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import Qs from 'qs';
+
+import { addSearchResult } from '../actions/searchResults';
 
 
 class Search extends React.Component {
@@ -30,11 +33,13 @@ class Search extends React.Component {
                 useCache: false
             }
         }).then((res) => {
-
-        console.log(res);
-
+            const data = res.data.GoodreadsResponse.search.results.work
+            // this.props.dispatch(addSearchResult({ data }));
+            // results(data);
+            this.props.addSearchResult({ data })
         }).catch((error) => {
             alert("No results");
+            console.log(error);
         })
     }
 
@@ -47,6 +52,7 @@ class Search extends React.Component {
         e.preventDefault();
 
         this.fetchBooks(this.state.searchRequest);
+        this.setState(() => ({ searchRequest: '' }))
     }
 
     render() {
@@ -54,6 +60,7 @@ class Search extends React.Component {
             <form action="" onSubmit={this.onSubmit}>
                 <input 
                 type="text"
+                value={this.state.searchRequest}
                 onChange={this.onSearchChange}
                 />
                 <button>Submit</button>
@@ -62,4 +69,7 @@ class Search extends React.Component {
     }
 }
 
-export default Search;
+//no need for mapDispatchToProps function here
+//the object passed in below sets up the action AND dispatch as props on the component
+//connect handles that for us
+export default connect(null, { addSearchResult })(Search);
