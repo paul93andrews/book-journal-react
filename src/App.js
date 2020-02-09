@@ -5,6 +5,7 @@ import configureStore from './store/configureStore';
 import './App.css';
 
 import Search from './Components/Search';
+import ResultsList from './Components/ResultsList';
 
 const store = configureStore();
 
@@ -29,6 +30,7 @@ class App extends Component {
       <div className="App">
         <Provider store={store}>
           <Search />
+          <ResultsList />
         {/* {this.fetchBooks('deathly hallows')} */}
         </Provider>
       </div>

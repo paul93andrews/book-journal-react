@@ -34,8 +34,6 @@ class Search extends React.Component {
             }
         }).then((res) => {
             const data = res.data.GoodreadsResponse.search.results.work
-            // this.props.dispatch(addSearchResult({ data }));
-            // results(data);
             this.props.addSearchResult({ data })
         }).catch((error) => {
             alert("No results");
