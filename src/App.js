@@ -4,8 +4,7 @@ import configureStore from './store/configureStore';
 
 import './App.css';
 
-import Search from './Components/Search';
-import ResultsList from './Components/ResultsList';
+import JournalRouter from './routers/JournalRouter';
 
 const store = configureStore();
 
@@ -29,9 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store={store}>
-          <Search />
-          <ResultsList />
-        {/* {this.fetchBooks('deathly hallows')} */}
+          <JournalRouter />
         </Provider>
       </div>
     );
