@@ -16,3 +16,7 @@ export const addBook = ({
         description,
     }
 });
+
+export const removeLatestBook = () => ({
+    type: 'REMOVE_LATEST_BOOK'
+})
