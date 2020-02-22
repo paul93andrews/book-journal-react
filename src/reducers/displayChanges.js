@@ -1,6 +1,8 @@
 const displayChangesDefaultState = [
     {
         descriptionModal: 'hidden',
+        bookID: '',
+        pageType: '',
     }
 ];
 
@@ -18,6 +20,20 @@ const displayChangesReducer = (state = displayChangesDefaultState, action) => {
                 return {
                     ...property,
                     descriptionModal: action.propery,
+                }
+            })
+        case 'DISPLAY_SELECTED_BOOK':
+            return state.map(property => {
+                return {
+                    ...property,
+                    bookID: action.id,
+                }
+            })
+        case 'TRACK_CURRENT_PAGE':
+            return state.map(property => {
+                return {
+                    ...property,
+                    pageType: action.pageType 
                 }
             })
         default:

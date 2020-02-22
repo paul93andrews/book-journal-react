@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { addBook } from '../actions/bookCatalogue';
 import { displayDescriptionModal } from '../actions/displayChanges';
+import { displaySelectedBook } from '../actions/displayChanges';
 
 const ResultListItem = ({ id, best_book, original_publication_year }) => {  
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
             year: original_publication_year.$t,
             image: best_book.image_url,
         }));
+        dispatch((displaySelectedBook(id.$t)));
         dispatch(displayDescriptionModal('show'));
     }
     
