@@ -8,7 +8,6 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
     const dispatch = useDispatch();
 
     const openModal = () => {
-        console.log('opened and sent data to store in state');
         dispatch(addBook({
             id: id.$t,
             title: best_book.title,

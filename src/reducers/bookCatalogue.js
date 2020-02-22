@@ -9,6 +9,12 @@ const bookCatalogueReducer = (state = bookCatalogueDefaultState, action) => {
                 ...state,
                 action.book,
             ];
+        case 'REMOVE_SELECTED_BOOK':
+            return state.filter(book => {
+                if (book.id !== action.id) {
+                    return book
+                }
+            })
         case 'REMOVE_LATEST_BOOK':
             return state.filter(book => {
                 if(state.indexOf(book) !== state.length - 1) {

@@ -1,17 +1,29 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { removeSelectedBook } from '../actions/bookCatalogue';
+
 import styled from 'styled-components';
 
 const BookItem = styled.article`
 
 `
 
-const Book = (props) => {
+const Book = ({ id, image, title, author, year, description }) => {
+    const dispatch = useDispatch();
+
+    const removeBook = () => {
+        dispatch(removeSelectedBook(id));
+    }
 
     return (
         <BookItem>
-            <h4>{props.details.title}</h4>
+            <img src={image} alt=""/>
+            <h4>{title}</h4>
+            <h5>{author.name}</h5>
+            <p>{year}</p>
+            <p>{description}</p>
+            <button onClick={removeBook}>Remove Book</button>
         </BookItem>
     )
 }

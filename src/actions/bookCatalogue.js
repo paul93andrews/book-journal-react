@@ -17,6 +17,11 @@ export const addBook = ({
     }
 });
 
+export const removeSelectedBook = (id) => ({
+    type: 'REMOVE_SELECTED_BOOK',
+    id
+})
+
 export const removeLatestBook = () => ({
     type: 'REMOVE_LATEST_BOOK'
 });
@@ -24,4 +29,4 @@ export const removeLatestBook = () => ({
 export const addDescription = (description) => ({
     type: 'ADD_DESCRIPTION',
     description
-})
+});

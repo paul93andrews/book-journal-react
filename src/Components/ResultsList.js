@@ -5,7 +5,6 @@ import ResultListItem from './ResultsListItem';
 const ResultsList = (props) => (
     <div>
         <h1>Search Results</h1>
-        {console.log(props)}
         {props.searchResults.map(result =>
             <ResultListItem 
             key={result.id.$t} 

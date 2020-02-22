@@ -11,7 +11,6 @@ const Catalogue = styled.main`
 
 const CatalogueBooks = () => {
     const bookList = useSelector(state => state.bookCatalogue);
-    console.log(bookList);
 
     return (
         <Catalogue>
@@ -22,7 +21,8 @@ const CatalogueBooks = () => {
             <h3>Start adding some books!</h3>
             :
             bookList.map(book => {
-                return <Book details={book} key={book.id}/>
+                //look up why spreading book object into props works for destructuring
+                return <Book {...book} key={book.id}/>
             })
             }
         </Catalogue>
