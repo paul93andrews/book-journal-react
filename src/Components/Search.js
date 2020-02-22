@@ -4,6 +4,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 import { addSearchResult } from '../actions/searchResults';
+import { resetSearchResult } from '../actions/searchResults';
 
 
 class Search extends React.Component {
@@ -13,6 +14,12 @@ class Search extends React.Component {
         this.state = {
             searchRequest: '',
         }
+    }
+
+    componentWillUnmount() {
+        return this.props.searchResults.length === 0 
+        ? null 
+        : this.props.resetSearchResult();
     }
 
     fetchBooks = (input) => {
@@ -67,7 +74,8 @@ class Search extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({ searchResults: state.searchResults })
 //no need for mapDispatchToProps function here
 //the object passed in below sets up the action AND dispatch as props on the component
 //connect handles that for us
-export default connect(null, { addSearchResult })(Search);
+export default connect(mapStateToProps, { addSearchResult, resetSearchResult })(Search);

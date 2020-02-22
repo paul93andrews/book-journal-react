@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { hideDescriptionModal } from '../actions/displayChanges';
 import { removeLatestBook } from '../actions/bookCatalogue';
+import { addDescription } from '../actions/bookCatalogue';
+
+const Wrapper = styled.section`
+    
+`
 
 const AddDescriptionModal = () => {
+    const [value, setValue] = useState('');
+
     const dispatch = useDispatch();
     const modalDisplay = useSelector(state => state.displayChanges[0].descriptionModal);
 
-    const Wrapper = styled.section`
-        
-    `
+
+    const changeDescription = (e) => {
+        setValue(e.target.value);
+    }
+
+    const submitDescription = (e) => {
+        e.preventDefault();
+        dispatch(addDescription(value));
+        setValue('');
+        dispatch(hideDescriptionModal('hidden'));
+    }
 
     const hideModal = () => {
         dispatch(hideDescriptionModal('hidden'));
@@ -20,11 +35,12 @@ const AddDescriptionModal = () => {
 
     return (
         <div>
-            {modalDisplay === 'show' 
+            {
+            modalDisplay === 'show' 
             ? 
             <Wrapper>
-                <form action="">
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                <form action="" onSubmit={submitDescription}>
+                    <textarea name="" id="" value={value} onChange={changeDescription}></textarea>
                     <button>Add Description</button>
                 </form>
                 <button onClick={hideModal}>Cancel</button>

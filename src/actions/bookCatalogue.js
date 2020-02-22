@@ -19,4 +19,9 @@ export const addBook = ({
 
 export const removeLatestBook = () => ({
     type: 'REMOVE_LATEST_BOOK'
+});
+
+export const addDescription = (description) => ({
+    type: 'ADD_DESCRIPTION',
+    description
 })
