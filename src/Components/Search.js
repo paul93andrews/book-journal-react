@@ -6,6 +6,7 @@ import Qs from 'qs';
 import { addSearchResult } from '../actions/searchResults';
 import { resetSearchResult } from '../actions/searchResults';
 import { hideDescriptionModal } from '../actions/displayChanges';
+import { setLoadingState } from '../actions/displayChanges';
 
 
 class Search extends React.Component {
@@ -44,8 +45,10 @@ class Search extends React.Component {
         }).then((res) => {
             const data = res.data.GoodreadsResponse.search.results.work
             this.props.addSearchResult({ data })
+            this.props.setLoadingState('unset');
         }).catch((error) => {
             alert("No results");
+            this.props.setLoadingState('unset');
             console.log(error);
         })
     }
@@ -60,6 +63,7 @@ class Search extends React.Component {
 
         this.fetchBooks(this.state.searchRequest);
         this.setState(() => ({ searchRequest: '' }))
+        this.props.setLoadingState('loading');
     }
 
     render() {
@@ -80,4 +84,4 @@ const mapStateToProps = state => ({ searchResults: state.searchResults })
 //no need for mapDispatchToProps function here
 //the object passed in below sets up the action AND dispatch as props on the component
 //connect handles that for us
-export default connect(mapStateToProps, { addSearchResult, resetSearchResult, hideDescriptionModal })(Search);
+export default connect(mapStateToProps, { addSearchResult, resetSearchResult, hideDescriptionModal, setLoadingState })(Search);

@@ -17,3 +17,8 @@ export const trackCurrentPage = (pageType) => ({
     type: 'TRACK_CURRENT_PAGE',
     pageType
 })
+
+export const setLoadingState = (status) => ({
+    type: 'SET_LOADING_STATE',
+    status
+})

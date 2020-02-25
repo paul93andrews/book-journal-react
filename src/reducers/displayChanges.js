@@ -3,6 +3,7 @@ const displayChangesDefaultState = [
         descriptionModal: 'hidden',
         bookID: '',
         pageType: '',
+        loadingStatus: '',
     }
 ];
 
@@ -34,6 +35,13 @@ const displayChangesReducer = (state = displayChangesDefaultState, action) => {
                 return {
                     ...property,
                     pageType: action.pageType 
+                }
+            })
+        case 'SET_LOADING_STATE':
+            return state.map(property => {
+                return {
+                    ...property,
+                    loadingStatus: action.status,
                 }
             })
         default:
