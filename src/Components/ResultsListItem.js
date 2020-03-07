@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addBook } from '../actions/bookCatalogue';
+import { startAddBook } from '../actions/bookCatalogue';
 import { displayDescriptionModal } from '../actions/displayChanges';
 import { displaySelectedBook } from '../actions/displayChanges';
 
@@ -9,11 +9,13 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
     const dispatch = useDispatch();
 
     const openModal = () => {
-        dispatch(addBook({
-            id: id.$t,
+        const modifiedID = id["$t"];
+        const modifiedYear = original_publication_year["$t"];
+        dispatch(startAddBook({
+            id: modifiedID,
             title: best_book.title,
-            author: best_book.author,
-            year: original_publication_year.$t,
+            author: best_book.author.name,
+            year: modifiedYear,
             image: best_book.image_url,
         }));
         dispatch((displaySelectedBook(id.$t)));

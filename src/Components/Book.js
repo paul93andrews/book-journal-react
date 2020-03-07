@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeSelectedBook } from '../actions/bookCatalogue';
+import { startRemoveSelectedBook } from '../actions/bookCatalogue';
 import { displayDescriptionModal } from '../actions/displayChanges';
 import { displaySelectedBook } from '../actions/displayChanges';
 
@@ -15,7 +15,7 @@ const Book = ({ id, image, title, author, year, description }) => {
     const dispatch = useDispatch();
 
     const removeBook = () => {
-        dispatch(removeSelectedBook(id));
+        dispatch(startRemoveSelectedBook(id));
     }
 
     const openModal = () => {
@@ -27,7 +27,7 @@ const Book = ({ id, image, title, author, year, description }) => {
         <BookItem>
             <img src={image} alt=""/>
             <h4>{title}</h4>
-            <h5>{author.name}</h5>
+            <h5>{author}</h5>
             <p>{year}</p>
             <p>{description}</p>
             <button onClick={openModal}>Edit Book</button>

@@ -31,6 +31,8 @@ const bookCatalogueReducer = (state = bookCatalogueDefaultState, action) => {
                 }
                 return book;
             })
+        case 'SET_BOOK_CATALOGUE':
+            return action.books
         default:
             return state;
     }

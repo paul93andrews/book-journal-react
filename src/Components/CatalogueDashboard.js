@@ -8,7 +8,6 @@ import CatalogueBooks from './CatalogueBooks';
 import AddDescriptionModal from '../Components/AddDescriptionModal';
 import { trackCurrentPage } from '../actions/displayChanges';
 
-
 const Dashboard = styled.section`
 
 `

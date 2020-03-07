@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import configureStore from './store/configureStore';
-import './firebase/firebase';
 
 import './App.css';
 
 import JournalRouter from './routers/JournalRouter';
+import { startSetBookCatalogue } from './actions/bookCatalogue';
 
 const store = configureStore();
 
@@ -18,6 +18,7 @@ class App extends Component {
   }
   
   componentDidMount() {
+    store.dispatch(startSetBookCatalogue());
   }
   
   componentDidUpdate() {
@@ -26,13 +27,18 @@ class App extends Component {
 
   render(){
     return (
-      <div className="App">
-        <Provider store={store}>
-          <JournalRouter />
-        </Provider>
-      </div>
+        <div className="App">
+          <Provider store={store}>
+            <JournalRouter />
+          </Provider>
+        </div>
     );
   } 
 }
 
 export default App;
+
+//no need for mapDispatchToProps function here
+//the object passed in below sets up the action AND dispatch as props on the component
+//connect handles that for us
+// export default connect(null, { startSetBookCatalogue })(App);

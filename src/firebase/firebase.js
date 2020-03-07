@@ -14,29 +14,31 @@ import * as firebase from 'firebase';
 
     const database = firebase.database();
 
-    database.ref('notes').push({
-        title: 'to do',
-        body: 'test activity',
-    })
+    export { firebase, database as default };
 
-    database.ref('expenses').push({
-        description: 'hockey card purchase',
-        note: 'the mcdavid and crosby collection',
-        amount: 3,
-        createdAt: '10 15 2005',
-    })
-    database.ref('expenses').push({
-        description: 'soup for dinner',
-        note: 'chicken noodle',
-        amount: 4,
-        createdAt: '10 16 2005',
-    })
-    database.ref('expenses').push({
-        description: 'simpsons dvd',
-        note: 'third season',
-        amount: 3,
-        createdAt: '10 17 2005',
-    })
+    // database.ref('notes').push({
+    //     title: 'to do',
+    //     body: 'test activity',
+    // })
+
+    // database.ref('expenses').push({
+    //     description: 'hockey card purchase',
+    //     note: 'the mcdavid and crosby collection',
+    //     amount: 3,
+    //     createdAt: '10 15 2005',
+    // })
+    // database.ref('expenses').push({
+    //     description: 'soup for dinner',
+    //     note: 'chicken noodle',
+    //     amount: 4,
+    //     createdAt: '10 16 2005',
+    // })
+    // database.ref('expenses').push({
+    //     description: 'simpsons dvd',
+    //     note: 'third season',
+    //     amount: 3,
+    //     createdAt: '10 17 2005',
+    // })
 
     // const testArrData = [{
     //     song: 'Adia',
