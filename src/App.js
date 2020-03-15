@@ -4,8 +4,9 @@ import configureStore from './store/configureStore';
 
 import './App.css';
 
-import JournalRouter from './routers/JournalRouter';
+import JournalRouter, { history } from './routers/JournalRouter';
 import { startSetBookCatalogue } from './actions/bookCatalogue';
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
@@ -14,15 +15,30 @@ class App extends Component {
     super();
     this.state = {
       test: 'test',
+      loggedInStatus: false,
     }
   }
   
   componentDidMount() {
-    store.dispatch(startSetBookCatalogue());
+    this.login();
+    if (this.state.loggedInStatus === true) {
+      store.dispatch(startSetBookCatalogue());
+    }
   }
   
   componentDidUpdate() {
     
+  }
+
+  login() {
+    return firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState(() => ({ loggedInStatus: true }))
+      } else {
+        this.setState(() => ({ loggedInStatus: false }))
+        history.push('/')
+      }
+    });
   }
 
   render(){
@@ -37,6 +53,7 @@ class App extends Component {
 }
 
 export default App;
+
 
 //no need for mapDispatchToProps function here
 //the object passed in below sets up the action AND dispatch as props on the component

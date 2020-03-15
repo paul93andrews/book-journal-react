@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
 import JournalHeader from '../Components/JournalHeader';
 import JournalHome from '../Components/JournalHome';
@@ -7,9 +8,11 @@ import searchPage from '../Components/SearchPage';
 import CatalogueDashboard from '../Components/CatalogueDashboard';
 import LoginPage from '../Components/LoginPage';
 
+export const history = createHistory();
+
 
 const JournalRouter = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <div>
             <JournalHeader />
             <Switch>
@@ -20,7 +23,7 @@ const JournalRouter = () => (
                 <Route path="/catalogue" component={CatalogueDashboard} />
             </Switch>
         </div>
-    </BrowserRouter>
+    </Router>
 )
 
 export default JournalRouter;
