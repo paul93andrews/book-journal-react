@@ -17,9 +17,9 @@ export const startAddBook = (expenseData = {}) => {
             image = '',
             description = ','
         } = expenseData;
-        const book = { id, title, author, year, image, description }
+        const book = { title, author, year, image, description }
 
-        database.ref(`books/${book.id}`).push(book).then((ref) => {
+        database.ref(`books`).push(book).then((ref) => {
             dispatch(addBook({
                 id: ref.key,
                 ...book,
@@ -39,10 +39,10 @@ export const startSetBookCatalogue = () => {
             const books = []
             
             snapshot.forEach((childSnapshot) => {
-                const booksFromObjectSnapshot = {...childSnapshot.val()}
-                const booksFromDatabase = Object.values(booksFromObjectSnapshot);
-                books.push(
-                    ...booksFromDatabase
+                books.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                    }
                 )
             })
             
@@ -57,7 +57,6 @@ export const removeSelectedBook = (id) => ({
 })
 
 export const startRemoveSelectedBook = (id) => {
-    console.log(id);
     return (dispatch) => {
         return database.ref(`books/${id}`).remove().then(() => {
             dispatch(removeSelectedBook(id));
@@ -69,7 +68,16 @@ export const removeLatestBook = () => ({
     type: 'REMOVE_LATEST_BOOK'
 });
 
-export const addDescription = (description) => ({
+export const addDescription = (id, description) => ({
     type: 'ADD_DESCRIPTION',
+    id,
     description
 });
+
+export const startAddDescription = (id, description) => {
+    return (dispatch) => {
+        return database.ref(`books/${id}`).update({description}).then((snapshot) => {
+            dispatch(addDescription(id, description));
+        })
+    }
+}

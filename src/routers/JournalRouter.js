@@ -5,6 +5,8 @@ import JournalHeader from '../Components/JournalHeader';
 import JournalHome from '../Components/JournalHome';
 import searchPage from '../Components/SearchPage';
 import CatalogueDashboard from '../Components/CatalogueDashboard';
+import LoginPage from '../Components/LoginPage';
+
 
 const JournalRouter = () => (
     <BrowserRouter>
@@ -12,7 +14,8 @@ const JournalRouter = () => (
             <JournalHeader />
             <Switch>
                 {/* <Route path="/" component={expenseDashboardPage} exact={true} /> */}
-                <Route path="/" component={JournalHome} exact={true}/>
+                <Route path="/" component={LoginPage} exact={true} />
+                <Route path="/home" component={JournalHome} />
                 <Route path="/search" component={searchPage} />
                 <Route path="/catalogue" component={CatalogueDashboard} />
             </Switch>

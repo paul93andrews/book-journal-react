@@ -23,7 +23,7 @@ const bookCatalogueReducer = (state = bookCatalogueDefaultState, action) => {
             })
         case 'ADD_DESCRIPTION':
             return state.map(book => {
-                if(state.indexOf(book) === state.length - 1) {
+                if(book.id === action.id) {
                     return {
                         ...book,
                         description: action.description,
