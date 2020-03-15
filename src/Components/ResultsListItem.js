@@ -9,10 +9,8 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
     const dispatch = useDispatch();
 
     const openModal = () => {
-        const modifiedID = id["$t"];
         const modifiedYear = original_publication_year["$t"];
         dispatch(startAddBook({
-            // id: modifiedID,
             title: best_book.title,
             author: best_book.author.name,
             year: modifiedYear,

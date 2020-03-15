@@ -34,9 +34,12 @@ class App extends Component {
     return firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState(() => ({ loggedInStatus: true }))
+        if (history.location.pathname === '/') {
+          history.push('/home');
+        }
       } else {
         this.setState(() => ({ loggedInStatus: false }))
-        history.push('/')
+        history.push('/');
       }
     });
   }
