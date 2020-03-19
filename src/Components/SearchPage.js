@@ -11,16 +11,17 @@ const searchPage = (props) => (
     <div>
         <Search />
         <h1>Search Results</h1>
-        { props.loadingStatus === 'loading' ? <SearchLoadingState /> : null }
-        {/* <ResultsList /> */}
-        { props.loadingStatus !== 'loading' ? <ResultsList /> : null }
-        <AddDescriptionModal />
+        { props.loadingStatus === 'loading' 
+        ? <SearchLoadingState /> 
+        : <ResultsList /> }
+        { props.bookCatalogue.length > 0 ? <AddDescriptionModal /> : '' }
     </div>
 );
 
 const mapStateToProps = (state) => {
     return {
         loadingStatus: state.displayChanges[0].loadingStatus,
+        bookCatalogue: state.bookCatalogue,
     }
 };
 

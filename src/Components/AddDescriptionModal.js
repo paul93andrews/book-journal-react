@@ -20,6 +20,7 @@ const AddDescriptionModal = () => {
     const [value, setValue] = useState('');
     useEffect(() => {
         dispatch(trackCurrentPage('searchPage'));
+        console.log('this was mounted');
     }, [])
 
     const modalDisplay = useSelector(state => state.displayChanges[0].descriptionModal);
@@ -48,7 +49,7 @@ const AddDescriptionModal = () => {
     const hideModal = () => {
         dispatch(hideDescriptionModal('hidden'));
         dispatch(displaySelectedBook(''));
-        
+
         if (pageType === 'searchPage') {
             dispatch(startRemoveSelectedBook(book.id))
         }
