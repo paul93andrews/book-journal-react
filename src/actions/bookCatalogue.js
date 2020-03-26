@@ -8,7 +8,8 @@ export const addBook = (book) => ({
 
 //this is the function that will start the addBook process and return a function that will set data to firebase database as well
 export const startAddBook = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const {
             id = '',
             title = '',
@@ -19,7 +20,7 @@ export const startAddBook = (expenseData = {}) => {
         } = expenseData;
         const book = { title, author, year, image, description }
 
-        database.ref(`books`).push(book).then((ref) => {
+        database.ref(`users/${uid}/books`).push(book).then((ref) => {
             dispatch(addBook({
                 id: ref.key,
                 ...book,
@@ -34,8 +35,9 @@ export const setBookCatalogue = (books) => ({
 })
 
 export const startSetBookCatalogue = () => {
-    return (dispatch) => {
-        return database.ref('books').once('value').then((snapshot) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/books`).once('value').then((snapshot) => {
             const books = []
             
             snapshot.forEach((childSnapshot) => {
@@ -57,8 +59,9 @@ export const removeSelectedBook = (id) => ({
 })
 
 export const startRemoveSelectedBook = (id) => {
-    return (dispatch) => {
-        return database.ref(`books/${id}`).remove().then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/books/${id}`).remove().then(() => {
             dispatch(removeSelectedBook(id));
         });
     };
@@ -75,8 +78,9 @@ export const addDescription = (id, description) => ({
 });
 
 export const startAddDescription = (id, description) => {
-    return (dispatch) => {
-        return database.ref(`books/${id}`).update({description}).then((snapshot) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/books/${id}`).update({description}).then((snapshot) => {
             dispatch(addDescription(id, description));
         })
     }

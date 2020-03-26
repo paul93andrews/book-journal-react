@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 import JournalHeader from '../Components/JournalHeader';
 
-
 export const PrivateRoute = ({ 
     isAuthenticated, 
     component: Component,
