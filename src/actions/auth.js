@@ -1,5 +1,4 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase';
-import { v4 as uuidv4 } from 'uuid';
 import { createBrowserHistory } from 'history'
 
 
@@ -24,16 +23,11 @@ export const startLogout = () => {
     }
 }
 
-export const loginGuest = () => ({
-    type: 'GUEST-LOGIN',
-    guestUID: uuidv4(),
-});
-
-const history = createBrowserHistory();
-
-
 export const startLoginGuest = () => {
-    return (dispatch) => {
-        dispatch(loginGuest);
+    return () => {
+        console.log('fired?');
+        return firebase.auth().signInAnonymously();
     }
 }
+
+const history = createBrowserHistory();
