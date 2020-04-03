@@ -1,4 +1,10 @@
-import { addBook, setBookCatalogue, removeSelectedBook, removeLatestBook, addDescription } from '../../actions/bookCatalogue';
+import { 
+    addBook, 
+    setBookCatalogue, 
+    removeSelectedBook, 
+    removeLatestBook, 
+    addDescription 
+} from '../../actions/bookCatalogue';
 
 test('should set up book to be added to redux', () => {
     const action = addBook({ 

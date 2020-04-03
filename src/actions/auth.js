@@ -1,6 +1,4 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase';
-import { createBrowserHistory } from 'history'
-
 
 export const login = (uid) => ({
     type: 'LOGIN',
@@ -29,5 +27,3 @@ export const startLoginGuest = () => {
         return firebase.auth().signInAnonymously();
     }
 }
-
-const history = createBrowserHistory();

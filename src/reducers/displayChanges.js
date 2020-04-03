@@ -20,7 +20,7 @@ const displayChangesReducer = (state = displayChangesDefaultState, action) => {
             return state.map(property => {
                 return {
                     ...property,
-                    descriptionModal: action.propery,
+                    descriptionModal: action.property,
                 }
             })
         case 'DISPLAY_SELECTED_BOOK':
