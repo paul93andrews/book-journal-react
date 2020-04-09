@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render loading state correctly 1`] = `
+<div>
+  <h3>
+    It's loading...
+  </h3>
+</div>
+`;
