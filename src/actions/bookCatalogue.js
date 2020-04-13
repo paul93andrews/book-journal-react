@@ -20,7 +20,7 @@ export const startAddBook = (expenseData = {}) => {
         } = expenseData;
         const book = { title, author, year, image, description }
 
-        database.ref(`users/${uid}/books`).push(book).then((ref) => {
+        return database.ref(`users/${uid}/books`).push(book).then((ref) => {
             dispatch(addBook({
                 id: ref.key,
                 ...book,
