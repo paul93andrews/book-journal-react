@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './globalStyles/_globalStyles.scss';
 import App from './App';
 import AuthInfo from './hoc'
 import * as serviceWorker from './serviceWorker';
