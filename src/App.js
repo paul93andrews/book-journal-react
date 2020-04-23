@@ -8,6 +8,8 @@ import JournalRouter, { history } from './routers/JournalRouter';
 import { startSetBookCatalogue } from './actions/bookCatalogue';
 import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
+import './fontAwesome/fontAwesome';
+
 
 const store = configureStore();
 

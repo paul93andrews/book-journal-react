@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt:400,600|Source+Serif+Pro:400,700&display=swap');
 
+
+
+// font-family: 'Source Serif Pro', serif;
+// font-family: 'Prompt', sans-serif;
+html {
+    font-size: 16px;
+}
+
 body,
 #root,
 .App {
     height: 100vh;
-    background: #f5f6f7;
+    background: #E0E1E2;
     
     font-family: 'Source Serif Pro', 'Helvetica', serif;
 
