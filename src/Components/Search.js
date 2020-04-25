@@ -5,8 +5,7 @@ import Qs from 'qs';
 
 import { addSearchResult } from '../actions/searchResults';
 import { resetSearchResult } from '../actions/searchResults';
-import { hideDescriptionModal } from '../actions/displayChanges';
-import { setLoadingState } from '../actions/displayChanges';
+import { hideDescriptionModal, setLoadingState, displaySearchErrorModal } from '../actions/displayChanges';
 
 
 class Search extends React.Component {
@@ -47,9 +46,9 @@ class Search extends React.Component {
             this.props.addSearchResult({ data })
             this.props.setLoadingState('unset');
         }).catch((error) => {
-            alert("No results");
+            this.props.displaySearchErrorModal('display');
+            this.props.resetSearchResult();
             this.props.setLoadingState('unset');
-            console.log(error);
         })
     }
 
@@ -68,7 +67,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <form action="" onSubmit={this.onSubmit}>
+            <form action="" onSubmit={this.onSubmit} className={ this.props.displayChanges[0].searchErrorModal === 'display' ? `blurComponent` : ''}>
                 <input 
                 type="text"
                 value={this.state.searchRequest}
@@ -80,8 +79,11 @@ class Search extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({ searchResults: state.searchResults })
+const mapStateToProps = state => ({ 
+    searchResults: state.searchResults,
+    displayChanges: state.displayChanges,
+})
 //no need for mapDispatchToProps function here
 //the object passed in below sets up the action AND dispatch as props on the component
 //connect handles that for us
-export default connect(mapStateToProps, { addSearchResult, resetSearchResult, hideDescriptionModal, setLoadingState })(Search);
+export default connect(mapStateToProps, { addSearchResult, resetSearchResult, hideDescriptionModal, setLoadingState, displaySearchErrorModal })(Search);

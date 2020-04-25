@@ -1,6 +1,7 @@
 const displayChangesDefaultState = [
     {
         descriptionModal: 'hidden',
+        searchErrorModal: 'hidden',
         bookID: '',
         pageType: '',
         loadingStatus: '',
@@ -42,6 +43,20 @@ const displayChangesReducer = (state = displayChangesDefaultState, action) => {
                 return {
                     ...property,
                     loadingStatus: action.status,
+                }
+            })
+        case 'DISPLAY_SEARCH_ERROR_MODAL':
+            return state.map(property => {
+                return {
+                    ...property,
+                    searchErrorModal: action.property,
+                }
+            })
+        case 'HIDE_SEARCH_ERROR_MODAL':
+            return state.map(property => {
+                return {
+                    ...property,
+                    searchErrorModal: action.property,
                 }
             })
         default:

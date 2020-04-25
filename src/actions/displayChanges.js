@@ -22,3 +22,13 @@ export const setLoadingState = (status) => ({
     type: 'SET_LOADING_STATE',
     status
 })
+
+export const displaySearchErrorModal = (display) => ({
+    type: 'DISPLAY_SEARCH_ERROR_MODAL',
+    property: display,
+})
+
+export const hideSearchErrorModal = (hidden) => ({
+    type: 'HIDE_SEARCH_ERROR_MODAL',
+    property: hidden,
+})
