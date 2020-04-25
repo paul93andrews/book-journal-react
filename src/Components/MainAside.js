@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const LoginAside = styled.aside`
+const MainAside = styled.aside`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -30,11 +30,11 @@ const LoginAside = styled.aside`
     }
 `;
 
-const LoginPageAside = () => (
-    <LoginAside>
+const MainAsideSection = () => (
+    <MainAside>
         <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
         <p>Coded with Love by: Paul Andrews :)</p>
-    </LoginAside>
+    </MainAside>
 );
 
-export default LoginPageAside;
+export default MainAsideSection;

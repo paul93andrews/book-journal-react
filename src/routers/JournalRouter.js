@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history'
 import JournalHome from '../Components/JournalHome';
@@ -10,16 +11,22 @@ import PrivateRoute from './PrivateRoute';
 
 export const history = createBrowserHistory();
 
+const ContentContainer = styled.main`
+    @media (min-width: 860px) {
+        display: flex;
+    }
+`
+
 const JournalRouter = () => (
     <Router history={history}>
-        <div>
+        <ContentContainer>
             <Switch>
                 <Route path="/" component={LoginPage} exact={true} />
                 <PrivateRoute path="/home" component={JournalHome} />
                 <PrivateRoute path="/search" component={searchPage} />
                 <PrivateRoute path="/catalogue" component={CatalogueDashboard} />
             </Switch>
-        </div>
+        </ContentContainer>
     </Router>
 )
 

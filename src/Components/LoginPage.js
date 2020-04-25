@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { startLogin } from '../actions/auth';
 import { startLoginGuest } from '../actions/auth';
 
-import LoginPageAside from './LoginPageAside';
+import MainAsideSection from './MainAside';
 
 const MainSection = styled.section`
     @media (min-width: 860px) {
@@ -37,8 +37,14 @@ const LoginSection = styled.section`
 
     }
     h1 {
-        font-size: 2.5rem;
-        line-height: 60px;
+        font-size: 1.75rem;
+        line-height: 30px;
+        margin-top: 45px;
+        @media (min-width: 860px) {
+            font-size: 2.5rem;
+            line-height: 60px;
+            margin-top: 40px;
+        }
     }
     h3 {
         font-family: 'Prompt', sans-serif;
@@ -49,7 +55,7 @@ const LoginSection = styled.section`
 `
 
 const LoginButton = styled.button`
-    width: 175px;
+    width: 140px;
     padding: 15px 0;
     margin-bottom: 15px;
     border-radius: 6px;
@@ -61,10 +67,14 @@ const LoginButton = styled.button`
     box-shadow: none;
     border: none;
     transition: box-shadow .2s ease,transform .2s ease, color .2s ease, -webkit-transform .2s ease;
+    @media (min-width: 860px) {
+        width: 175px;
+    }
     &:hover {
         box-shadow: 0 2.5px 10px rgba(0,0,0,.1);
         transform: translateY(-8px);
         color: #f8598b;
+        cursor: pointer;
     }
 `
 
@@ -78,7 +88,7 @@ const LoginPage = ({ startLogin, startLoginGuest })  => (
             <LoginButton onClick={startLogin}>Login Here</LoginButton>
             <LoginButton onClick={startLoginGuest}>Guest?</LoginButton>
         </LoginSection> 
-        <LoginPageAside />
+        <MainAsideSection />
     </MainSection>
 )
 
