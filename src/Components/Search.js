@@ -67,7 +67,10 @@ class Search extends React.Component {
 
     render() {
         return (
-            <form action="" onSubmit={this.onSubmit} className={ this.props.displayChanges[0].searchErrorModal === 'display' ? `blurComponent` : ''}>
+            <form action="" onSubmit={this.onSubmit} 
+            className={ 
+                this.props.displayChanges[0].searchErrorModal === 'display' 
+                ? `blurComponent` : '' }>
                 <input 
                 type="text"
                 value={this.state.searchRequest}

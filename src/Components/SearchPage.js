@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 
@@ -11,7 +11,12 @@ import SearchErrorModal from '../Components/SearchErrorModal';
 const searchPage = (props) => (
     <div>
         <Search />
-        <h1 className={props.searchErrorModal === 'display' ? `blurComponent` : ''} >Search Results</h1>
+        <h1 className={
+            props.searchErrorModal === 'display' ? 
+            `blurComponent` : ''} 
+        >
+        Search Results
+        </h1>
         { props.loadingStatus === 'loading' 
         ? <SearchLoadingState /> 
         : <ResultsList /> }

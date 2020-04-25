@@ -22,7 +22,6 @@ const CatalogueDashboard = () => {
     return (
         <Dashboard>
             <h1>Welcome to your collection of books</h1>
-            {/* <CatalogueWrapper></CatalogueWrapper> */}
             <CatalogueBooks />
             <AddDescriptionModal />
         </Dashboard>
