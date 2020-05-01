@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
@@ -8,14 +9,23 @@ import AddDescriptionModal from '../Components/AddDescriptionModal';
 import SearchLoadingState from '../Components/SearchLoadingState';
 import SearchErrorModal from '../Components/SearchErrorModal';
 
+const addClassToSearchPageHeading = (errorModalProps, loadingSearchProps) => {
+    if (errorModalProps === 'display') {
+        return 'blurComponent';
+    }
+    
+    if (loadingSearchProps === 'loading') {
+        return 'hide';
+    }
+}
+
 const searchPage = (props) => (
-    <div>
+    <SearchPageContainer>
         <Search />
         <h1 className={
-            props.searchErrorModal === 'display' ? 
-            `blurComponent` : ''} 
+            addClassToSearchPageHeading(props.searchErrorModal, props.loadingStatus)} 
         >
-        Search Results
+        {props.searchResults.length > 0 ? 'Search Results' : 'Start Searching!'}
         </h1>
         { props.loadingStatus === 'loading' 
         ? <SearchLoadingState /> 
@@ -25,7 +35,7 @@ const searchPage = (props) => (
         :
         '' }
         { props.bookCatalogue.length > 0 ? <AddDescriptionModal /> : '' }
-    </div>
+    </SearchPageContainer>
 );
 
 const mapStateToProps = (state) => {
@@ -33,7 +43,27 @@ const mapStateToProps = (state) => {
         loadingStatus: state.displayChanges[0].loadingStatus,
         bookCatalogue: state.bookCatalogue,
         searchErrorModal: state.displayChanges[0].searchErrorModal,
+        searchResults: state.searchResults,
     }
 };
+
+const SearchPageContainer = styled.section`
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-height: 40vh;
+    @media (min-width: 860px) {
+        width: 63%;
+        height: auto;
+    }
+    h1 {
+        align-self: center;
+        @media (min-width: 860px) {
+            align-self: unset;
+        }
+    }
+`;
 
 export default connect(mapStateToProps)(searchPage);
