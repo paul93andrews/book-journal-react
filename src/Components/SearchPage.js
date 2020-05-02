@@ -29,7 +29,11 @@ const searchPage = (props) => (
         </h1>
         { props.loadingStatus === 'loading' 
         ? <SearchLoadingState /> 
-        : <ResultsList /> }
+        : ''}
+        { props.searchResults.length > 0 && props.loadingStatus !== 'loading'
+        ? <ResultsList />
+        :
+        ''}
         { props.searchErrorModal === 'display' 
         ? <SearchErrorModal />
         :
@@ -60,6 +64,8 @@ const SearchPageContainer = styled.section`
     }
     h1 {
         align-self: center;
+        width: 100%;
+        text-align: center;
         @media (min-width: 860px) {
             align-self: unset;
         }
