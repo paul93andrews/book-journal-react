@@ -8,6 +8,10 @@ html {
     font-size: 16px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body,
 #root,
 .App {
@@ -19,7 +23,7 @@ body,
 }
 
 .blurComponent {
-    filter: blur(20px);
+    filter: blur(10px);
 }
 
 .hide {

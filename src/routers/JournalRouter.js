@@ -15,6 +15,7 @@ const ContentContainer = styled.main`
     @media (min-width: 860px) {
         display: flex;
     }
+    position: relative;
 `
 
 const JournalRouter = () => (

@@ -66,12 +66,22 @@ class Search extends React.Component {
         this.props.setLoadingState('loading');
     }
 
+    determineOverlayBlurClass = (searchErrorModal, descriptionModal) => {
+        if (searchErrorModal === 'display' || descriptionModal === 'show') {
+            return 'blurComponent';
+        } else {
+            return '';
+        }
+    } 
+
     render() {
         return (
             <SearchForm action="" onSubmit={this.onSubmit} 
             className={ 
-                this.props.displayChanges[0].searchErrorModal === 'display' 
-                ? `blurComponent` : '' }>
+                this.determineOverlayBlurClass(
+                    this.props.displayChanges[0].searchErrorModal, 
+                    this.props.displayChanges[0].descriptionModal)
+            }>
                 <input 
                 type="text"
                 value={this.state.searchRequest}

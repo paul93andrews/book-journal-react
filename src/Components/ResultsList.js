@@ -3,8 +3,21 @@ import { connect } from 'react-redux';
 import ResultListItem from './ResultsListItem';
 import styled from 'styled-components';
 
+const determineOverlayBlurClass = (searchErrorModal, descriptionModal) => {
+    if (searchErrorModal === 'display' || descriptionModal === 'show') {
+        return 'blurComponent';
+    } else {
+        return '';
+    }
+}
+
 const ResultsList = (props) => (
-    <ResultListSection>
+    <ResultListSection className={
+        determineOverlayBlurClass(
+            props.searchErrorModal,
+            props.descriptionModal
+        )
+    }>
         {props.searchResults.map(result =>
             <ResultListItem 
             key={result.id.$t} 
@@ -24,7 +37,7 @@ const ResultListSection = styled.section`
 
     &::-webkit-scrollbar { 
         background: transparent;  /* Safari and Chrome */
-        
+
     @media (min-width: 860px) and (max-width: 1000px) {
         padding: 10px 20px 0;
     }
@@ -39,7 +52,9 @@ const ResultListSection = styled.section`
 
 const mapStateToProps = (state) => {
     return {
-        searchResults: state.searchResults
+        searchResults: state.searchResults,
+        searchErrorModal: state.displayChanges[0].searchErrorModal,
+        descriptionModal: state.displayChanges[0].descriptionModal,
     }
 };
 

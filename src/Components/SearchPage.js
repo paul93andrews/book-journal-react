@@ -9,8 +9,8 @@ import AddDescriptionModal from '../Components/AddDescriptionModal';
 import SearchLoadingState from '../Components/SearchLoadingState';
 import SearchErrorModal from '../Components/SearchErrorModal';
 
-const addClassToSearchPageHeading = (errorModalProps, loadingSearchProps) => {
-    if (errorModalProps === 'display') {
+const addClassToSearchPageHeading = (errorModalProps, loadingSearchProps, descriptionModalProps) => {
+    if (errorModalProps === 'display' || descriptionModalProps === 'show') {
         return 'blurComponent';
     }
     
@@ -23,7 +23,12 @@ const searchPage = (props) => (
     <SearchPageContainer>
         <Search />
         <h1 className={
-            addClassToSearchPageHeading(props.searchErrorModal, props.loadingStatus)} 
+            addClassToSearchPageHeading(
+                props.searchErrorModal, 
+                props.loadingStatus, 
+                props.descriptionModal
+            )
+        } 
         >
         {props.searchResults.length > 0 ? 'Search Results' : 'Start Searching!'}
         </h1>
@@ -47,12 +52,12 @@ const mapStateToProps = (state) => {
         loadingStatus: state.displayChanges[0].loadingStatus,
         bookCatalogue: state.bookCatalogue,
         searchErrorModal: state.displayChanges[0].searchErrorModal,
+        descriptionModal: state.displayChanges[0].descriptionModal,
         searchResults: state.searchResults,
     }
 };
 
 const SearchPageContainer = styled.section`
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -1,9 +1,27 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { trackCurrentPage } from '../actions/displayChanges';
+
+const JournalHome = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(trackCurrentPage('homePage'));
+    }, [])
+
+    return (
+        <JournalMain>
+            <div>
+                <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
+                <p>Welcome to my project! Take a look around each of the pages if you have a second. Go look for some books on our search page or keep tabs on ones you've read recently on our catalogue page. Have fun.</p>
+            </div>
+            <p className="creator-stamp">{`Coded with Love by: Paul Andrews :)`}</p>
+        </JournalMain>
+    )
+}
 
 const JournalMain = styled.main`
     display: flex;
@@ -48,23 +66,5 @@ const JournalMain = styled.main`
         }
     }
 `
-
-const JournalHome = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(trackCurrentPage('homePage'));
-    }, [])
-
-    return (
-        <JournalMain>
-            <div>
-                <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
-                <p>Welcome to my project! Take a look around each of the pages if you have a second. Go look for some books on our search page or keep tabs on ones you've read recently on our catalogue page. Have fun.</p>
-            </div>
-            <p className="creator-stamp">Coded with Love by: Paul Andrews :)</p>
-        </JournalMain>
-    )
-}
 
 export default JournalHome;

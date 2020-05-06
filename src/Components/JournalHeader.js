@@ -1,10 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
+
+const JournalHeader = ({ startLogout, displayChanges }) => {
+
+    const searchErrorModalState = displayChanges[0].searchErrorModal;
+    const descriptionModalState = displayChanges[0].descriptionModal;
+
+    const determineOverlayBlurClass = (searchErrorModal, descriptionModal) => {
+        if (searchErrorModal === 'display' || descriptionModal === 'show') {
+            return 'blurComponent';
+        } else {
+            return '';
+        }
+    } 
+
+    return (
+        <Header className={
+        determineOverlayBlurClass(searchErrorModalState, descriptionModalState)
+        }
+        >
+            <h1>Paul's Book Catalogue React Project</h1>
+            <NavLink to="/home" activeClassName="is-active" exact={true}>Home</NavLink>
+            <NavLink to="/search" activeClassName="is-active">Search</NavLink>
+            <NavLink to="/catalogue" activeClassName="is-active">Catalogue</NavLink>
+            <LogoutButton onClick={startLogout}>Log Out</LogoutButton>
+        </Header>
+    ) 
+}
 
 const Header = styled.header`
     background: white;
@@ -90,25 +116,6 @@ const LogoutButton = styled.button`
         cursor: pointer;
     }
 `
-
-const JournalHeader = ({ startLogout, displayChanges }) => {
-    return (
-        <Header 
-        className={
-                displayChanges[0].searchErrorModal === 'display' 
-                ? 
-                `blurComponent` 
-                : 
-                '' }
-        >
-            <h1>Paul's Book Catalogue React Project</h1>
-            <NavLink to="/home" activeClassName="is-active" exact={true}>Home</NavLink>
-            <NavLink to="/search" activeClassName="is-active">Search</NavLink>
-            <NavLink to="/catalogue" activeClassName="is-active">Catalogue</NavLink>
-            <LogoutButton onClick={startLogout}>Log Out</LogoutButton>
-        </Header>
-    ) 
-}
 
 const mapStateToProps = state => ({
     displayChanges: state.displayChanges,
