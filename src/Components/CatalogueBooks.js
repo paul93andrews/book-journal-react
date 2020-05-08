@@ -5,10 +5,6 @@ import styled from 'styled-components';
 
 import Book from './Book';
 
-const Catalogue = styled.main`
-
-`
-
 const CatalogueBooks = () => {
     const bookList = useSelector(state => state.bookCatalogue);
 
@@ -28,5 +24,21 @@ const CatalogueBooks = () => {
         </Catalogue>
     )
 }
+
+
+const Catalogue = styled.main`
+    width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80vh;
+    overflow-y: scroll;
+    scrollbar-color: #5d6f83 transparent;  /* Firefox */
+
+    &::-webkit-scrollbar { 
+        background: transparent;  /* Safari and Chrome */
+`
 
 export default CatalogueBooks;

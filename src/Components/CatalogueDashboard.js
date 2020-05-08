@@ -8,10 +8,6 @@ import CatalogueBooks from './CatalogueBooks';
 import AddDescriptionModal from '../Components/AddDescriptionModal';
 import { trackCurrentPage } from '../actions/displayChanges';
 
-const Dashboard = styled.section`
-
-`
-
 const CatalogueDashboard = () => {
     const dispatch = useDispatch();
 
@@ -27,5 +23,15 @@ const CatalogueDashboard = () => {
         </Dashboard>
     )
 }
+
+const Dashboard = styled.section`
+    @media (min-width: 860px) {
+        width: 63%;
+    }
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+`
 
 export default CatalogueDashboard;
