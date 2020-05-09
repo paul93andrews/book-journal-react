@@ -8,9 +8,23 @@ export const hideDescriptionModal = (hidden) => ({
     property: hidden
 })
 
-export const displaySelectedBook = (id) => ({
+export const updatingDescriptionValue = () => ({
+    type: 'INCREMENT_DESCRIPTION_VALUE_COUNTER',
+})
+
+export const resetDescriptionValue = () => ({
+    type: 'RESET_DESCRIPTION_VALUE_COUNTER',
+})
+
+export const displaySelectedBook = (id, title, author, year, description = '') => ({
     type: 'DISPLAY_SELECTED_BOOK',
-    id
+    bookDetails: {
+        id, 
+        title,
+        author, 
+        year,
+        description
+    }
 })
 
 export const trackCurrentPage = (pageType) => ({

@@ -15,7 +15,7 @@ const Book = ({ id, image, title, author, year, description }) => {
     }
 
     const openModal = () => {
-        dispatch((displaySelectedBook(id)));
+        dispatch((displaySelectedBook(id, title, author, year, description)));
         dispatch(displayDescriptionModal('show'));
     }
 
@@ -72,12 +72,6 @@ const BookItem = styled.article`
         display: flex;
         flex-direction: column;
         position: relative;
-        span.category {
-            font-size: 1rem;
-            text-transform: uppercase;
-            color: #f8598b;
-            font-weight: 600;
-        }
         h4 {
             font-size: 1.25rem;
             margin-bottom: 10px;

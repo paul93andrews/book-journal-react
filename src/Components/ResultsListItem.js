@@ -12,27 +12,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const ResultListItem = ({ id, best_book, original_publication_year }) => {  
     const dispatch = useDispatch();
 
+    const bookID = id.$t;
+    const bookTitle = best_book.title;
+    const bookAuthor = best_book.author.name;
+    const bookYear = original_publication_year.$t;
+    const bookImage = best_book.image_url;
+
     const openModal = () => {
         const modifiedYear = original_publication_year["$t"];
         dispatch(startAddBook({
-            title: best_book.title,
-            author: best_book.author.name,
+            title: bookTitle,
+            author: bookAuthor,
             year: modifiedYear,
-            image: best_book.image_url,
+            image: bookImage,
         }));
-        dispatch((displaySelectedBook(id.$t)));
+        dispatch((displaySelectedBook(bookID, bookTitle, bookAuthor, bookYear)));
         dispatch(displayDescriptionModal('show'));
     }
     
     return (
         <ListItem id={id.$t}>
             <div className="img">
-                <img src={best_book.image_url} alt=""/>
+                <img src={bookImage} alt=""/>
             </div>
             <div className="description">
-                <p><span className="category">Title:</span> {best_book.title}</p>
-                <p><span className="category">Author:</span> {best_book.author.name}</p>
-                <p><span className="category">Year:</span> {original_publication_year.$t}</p>
+                <p><span className="category">Title:</span> {bookTitle}</p>
+                <p><span className="category">Author:</span> {bookAuthor}</p>
+                <p><span className="category">Year:</span> {bookYear}</p>
                 <button onClick={openModal}>Add <FontAwesomeIcon icon="plus"></FontAwesomeIcon></button>
             </div>
         </ListItem>
@@ -90,11 +96,6 @@ const ListItem = styled.article`
             &:first-of-type {
                 overflow: hidden;
             }
-        }
-        .category {
-            text-transform: uppercase;
-            font-size: 14px;
-            color: #f8598b;
         }
         button {
             border-radius: 6px;

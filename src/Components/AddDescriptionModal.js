@@ -8,6 +8,7 @@ import { startAddDescription } from '../actions/bookCatalogue';
 import { startRemoveSelectedBook } from '../actions/bookCatalogue';
 import { displaySelectedBook } from '../actions/displayChanges';
 import { trackCurrentPage } from '../actions/displayChanges';
+import { updatingDescriptionValue, resetDescriptionValue } from '../actions/displayChanges';
 
 import { stat } from 'fs';
 
@@ -17,23 +18,35 @@ const AddDescriptionModal = () => {
     const [value, setValue] = useState('');
     useEffect(() => {
         dispatch(trackCurrentPage('searchPage'));
-        console.log('this was mounted');
     }, [])
 
     const modalDisplay = useSelector(state => state.displayChanges[0].descriptionModal);
     const pageType = useSelector(state => state.displayChanges[0].pageType);
+    const selectedBook = useSelector(state => state.displayChanges[0].bookDetails);
+    const descriptionValueUpdating = useSelector(state => state.displayChanges[0].descriptionValueUpdating);
     const bookCatalogueLength = useSelector(state => state.bookCatalogue.length)
     const book = useSelector(state => state.bookCatalogue[bookCatalogueLength - 1]);
-    const selectedBookID = useSelector(state => state.displayChanges[0].bookID);
+
+    const selectedBookID = selectedBook.id;
+    const selectedBookTitle = selectedBook.title;
+    const selectedBookAuthor = selectedBook.author;
+    const selectedBookYear = selectedBook.year;
+    const selectedBookDescription = selectedBook.description;
     
+    const descriptionValue = descriptionValueUpdating ? value : selectedBookDescription + value;
+
+    console.log(descriptionValueUpdating);
 
     const changeDescription = (e) => {
+        dispatch(updatingDescriptionValue());
         setValue(e.target.value);
     }
 
     const submitDescription = (e) => {
         e.preventDefault();
         setValue('');
+
+        dispatch(resetDescriptionValue())
         dispatch(hideDescriptionModal('hidden'));
 
         if (pageType === 'searchPage') {
@@ -41,14 +54,19 @@ const AddDescriptionModal = () => {
         } else if (pageType === 'cataloguePage') {
             dispatch(startAddDescription(selectedBookID, value))
         }
+
+        // dispatch(startAddDescription(selectedBookID, value));
     }
 
     const hideModal = () => {
+        setValue('');
+
+        dispatch(resetDescriptionValue());
         dispatch(hideDescriptionModal('hidden'));
         dispatch(displaySelectedBook(''));
 
         if (pageType === 'searchPage') {
-            dispatch(startRemoveSelectedBook(book.id))
+            dispatch(startRemoveSelectedBook(selectedBookID))
         }
     }
     
@@ -70,12 +88,19 @@ const AddDescriptionModal = () => {
                     <span>Close Modal</span>
                     <FontAwesomeIcon icon="times" size="3x" />
                 </button>
-                <h3>{book.title}</h3>
+                <h3>{selectedBookTitle}</h3>
+                <h4>
+                    <span className="category">Author: </span>{selectedBookAuthor}
+                </h4>
+                <h4>
+                    <span className="category">Year: </span>
+                    {selectedBookYear}
+                </h4>
                 <form action="" onSubmit={submitDescription}>
                     <textarea 
                     name="" 
                     id="" 
-                    value={value} 
+                    value={descriptionValue} 
                     onChange={changeDescription}
                     placeholder="Enter a description here if you'd like!"
                     ></textarea>
@@ -142,7 +167,20 @@ const DescriptionModal = styled.section`
         font-weight: 600;
         font-size: 1.5rem;
         margin: 15px 0;
+        margin-bottom: 0;
         text-align: center;
+    }
+    h4 {
+        margin-bottom: 0;
+        font-size: 1rem;
+        font-family: 'Prompt', sans-serif;
+        font-weight: 300;
+        &:first-of-type {
+            margin-bottom: 5px;
+        }
+        &:nth-of-type(2) {
+            margin-top: 0;
+        }
     }
     form {
         display: flex;
@@ -157,7 +195,7 @@ const DescriptionModal = styled.section`
             border-radius: 6px;
             font-family: 'Prompt', sans-serif;
             padding: 10px 15px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
         button {
             align-self: center;

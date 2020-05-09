@@ -2,9 +2,10 @@ const displayChangesDefaultState = [
     {
         descriptionModal: 'hidden',
         searchErrorModal: 'hidden',
-        bookID: '',
+        bookDetails: '',
         pageType: '',
         loadingStatus: '',
+        descriptionValueUpdating: false,
     }
 ];
 
@@ -24,11 +25,25 @@ const displayChangesReducer = (state = displayChangesDefaultState, action) => {
                     descriptionModal: action.property,
                 }
             })
+        case 'INCREMENT_DESCRIPTION_VALUE_COUNTER':
+            return state.map(property => {
+                return {
+                    ...property,
+                    descriptionValueUpdating: true,
+                }
+            })
+        case 'RESET_DESCRIPTION_VALUE_COUNTER':
+            return state.map(property => {
+                return {
+                    ...property,
+                    descriptionValueUpdating: false,
+                }
+            })
         case 'DISPLAY_SELECTED_BOOK':
             return state.map(property => {
                 return {
                     ...property,
-                    bookID: action.id,
+                    bookDetails: action.bookDetails,
                 }
             })
         case 'TRACK_CURRENT_PAGE':
