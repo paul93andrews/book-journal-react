@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import DescriptionLengthTracker from './DescriptionLengthTracker';
+
 import { hideDescriptionModal } from '../actions/displayChanges';
 import { startAddDescription } from '../actions/bookCatalogue';
 import { startRemoveSelectedBook } from '../actions/bookCatalogue';
@@ -35,18 +37,21 @@ const AddDescriptionModal = () => {
     
     const descriptionValue = descriptionValueUpdating ? value : selectedBookDescription + value;
 
-    console.log(descriptionValueUpdating);
-
     const changeDescription = (e) => {
-        dispatch(updatingDescriptionValue());
-        setValue(e.target.value);
+        if (e.target.value.length <= 105) {
+            dispatch(updatingDescriptionValue());
+            setValue(e.target.value);
+        } else if (e.target.value.length >= 105) {
+            console.log((e.target.value).length);
+            return null;
+        }
     }
 
     const submitDescription = (e) => {
         e.preventDefault();
         setValue('');
 
-        dispatch(resetDescriptionValue())
+        dispatch(resetDescriptionValue());
         dispatch(hideDescriptionModal('hidden'));
 
         if (pageType === 'searchPage') {
@@ -54,8 +59,6 @@ const AddDescriptionModal = () => {
         } else if (pageType === 'cataloguePage') {
             dispatch(startAddDescription(selectedBookID, value))
         }
-
-        // dispatch(startAddDescription(selectedBookID, value));
     }
 
     const hideModal = () => {
@@ -66,7 +69,7 @@ const AddDescriptionModal = () => {
         dispatch(displaySelectedBook(''));
 
         if (pageType === 'searchPage') {
-            dispatch(startRemoveSelectedBook(selectedBookID))
+            dispatch(startRemoveSelectedBook(book.id))
         }
     }
     
@@ -104,6 +107,7 @@ const AddDescriptionModal = () => {
                     onChange={changeDescription}
                     placeholder="Enter a description here if you'd like!"
                     ></textarea>
+                            <DescriptionLengthTracker descriptionLength={descriptionValue.length}  />
                     <button>
                         Add Book
                         <FontAwesomeIcon icon="plus"></FontAwesomeIcon>

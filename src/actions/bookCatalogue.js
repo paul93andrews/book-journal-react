@@ -12,13 +12,15 @@ export const startAddBook = (expenseData = {}) => {
         const uid = getState().auth.uid;
         const {
             id = '',
+            goodReadsID = '',
             title = '',
             author = '',
             year = '',
             image = '',
             description = ','
         } = expenseData;
-        const book = { title, author, year, image, description }
+        const book = { goodReadsID, title, author, year, image, description }
+        console.log(book);
 
         return database.ref(`users/${uid}/books`).push(book).then((ref) => {
             dispatch(addBook({

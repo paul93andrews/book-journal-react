@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { startAddBook } from '../actions/bookCatalogue';
 import { displayDescriptionModal } from '../actions/displayChanges';
@@ -8,9 +8,12 @@ import { displaySelectedBook } from '../actions/displayChanges';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 const ResultListItem = ({ id, best_book, original_publication_year }) => {  
     const dispatch = useDispatch();
+
+    const goodReadsBookIDListOfItemsInCatalogue = useSelector(
+        state => state.bookCatalogue
+    ).map(book => book.goodReadsID);
 
     const bookID = id.$t;
     const bookTitle = best_book.title;
@@ -21,6 +24,7 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
     const openModal = () => {
         const modifiedYear = original_publication_year["$t"];
         dispatch(startAddBook({
+            goodReadsID: bookID,
             title: bookTitle,
             author: bookAuthor,
             year: modifiedYear,
@@ -32,6 +36,15 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
     
     return (
         <ListItem id={id.$t}>
+            {
+                goodReadsBookIDListOfItemsInCatalogue.map(id => {
+                    if (id === bookID) {
+                        return <div className="disabled-item" key={bookID}></div>
+                    } else {
+                        return null
+                    }
+                })
+            }
             <div className="img">
                 <img src={bookImage} alt=""/>
             </div>
