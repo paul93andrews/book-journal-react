@@ -81,6 +81,8 @@ const AddDescriptionModal = () => {
         }
     }
 
+    const buttonLabel = pageType === 'searchPage' ? 'Add Book' : 'Update Book';
+
     return (
         <DescriptionOverlay className={overlayClass()}>
             {
@@ -109,7 +111,7 @@ const AddDescriptionModal = () => {
                     ></textarea>
                             <DescriptionLengthTracker descriptionLength={descriptionValue.length}  />
                     <button>
-                        Add Book
+                        {buttonLabel}
                         <FontAwesomeIcon icon="plus"></FontAwesomeIcon>
                     </button>
                 </form>
@@ -173,6 +175,9 @@ const DescriptionModal = styled.section`
         margin: 15px 0;
         margin-bottom: 0;
         text-align: center;
+        @media (max-width: 560px) {
+            font-size: 1.15rem;
+        }
     }
     h4 {
         margin-bottom: 0;

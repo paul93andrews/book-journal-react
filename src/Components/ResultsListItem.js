@@ -39,7 +39,7 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
             {
                 goodReadsBookIDListOfItemsInCatalogue.map(id => {
                     if (id === bookID) {
-                        return <div className="disabled-item" key={bookID}></div>
+                        return <div className="disabled-item" key={bookID}><h3>This book has already been added to your catalogue!</h3></div>
                     } else {
                         return null
                     }
@@ -59,6 +59,7 @@ const ResultListItem = ({ id, best_book, original_publication_year }) => {
 }
 
 const ListItem = styled.article`
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     min-width: 460px;
@@ -76,6 +77,21 @@ const ListItem = styled.article`
         width: 90%;
         margin: 0 auto 20px;
         min-width: unset;
+    }
+    .disabled-item {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 30;
+        background: #808080e3;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            color: white;
+        }
     }
     .img {
         width: 20%;
@@ -108,6 +124,9 @@ const ListItem = styled.article`
             margin-bottom: 0;
             &:first-of-type {
                 overflow: hidden;
+                @media (max-width: 560px) {
+                    margin-top: 10px;
+                }
             }
         }
         button {

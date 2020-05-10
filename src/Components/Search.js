@@ -15,7 +15,9 @@ class Search extends React.Component {
 
         this.state = {
             searchRequest: '',
+            floatLabelClassName: '',
         }
+        
     }
 
     componentWillUnmount = () => {
@@ -56,13 +58,20 @@ class Search extends React.Component {
     onSearchChange = (e) => {
         const searchRequest = e.target.value;
         this.setState(() => ({ searchRequest }));
+
+        if (searchRequest) {
+            this.setState(() => ({ floatLabelClassName: 'float-label' }));
+        } else {
+            this.setState(() => ({ floatLabelClassName:  ''}));
+        }
     }
 
     onSubmit = (e) => {
         e.preventDefault();
 
         this.fetchBooks(this.state.searchRequest);
-        this.setState(() => ({ searchRequest: '' }))
+        this.setState(() => ({ searchRequest: '' }));
+        this.setState(() => ({ floatLabelClassName: '' }));
         this.props.setLoadingState('loading');
     }
 
@@ -72,7 +81,7 @@ class Search extends React.Component {
         } else {
             return '';
         }
-    } 
+    }
 
     render() {
         return (
@@ -87,6 +96,7 @@ class Search extends React.Component {
                 value={this.state.searchRequest}
                 onChange={this.onSearchChange}
                 id="searchForm"
+                className={this.state.floatLabelClassName}
                 />
                 <label htmlFor="searchForm">Search</label>
                 <button>Submit</button>
@@ -129,7 +139,8 @@ const SearchForm = styled.form`
         width: 170px;
         padding: 8px;
         &:focus,
-        &:active {
+        &:active,
+        &.float-label {
             border: 1px solid #e75d5b;
             outline: none;
             & + label {

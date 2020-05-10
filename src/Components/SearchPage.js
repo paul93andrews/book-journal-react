@@ -67,6 +67,10 @@ const SearchPageContainer = styled.section`
         width: 63%;
         height: auto;
     }
+    @media (max-width: 860px) {
+        position: relative;
+        margin-bottom: 50px;
+    }
     h1 {
         align-self: center;
         width: 100%;

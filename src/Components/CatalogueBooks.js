@@ -7,14 +7,23 @@ import Book from './Book';
 
 const CatalogueBooks = () => {
     const bookList = useSelector(state => state.bookCatalogue);
+    const modalDisplay = useSelector(state => state.displayChanges[0].descriptionModal);
+
+    const determineOverlayBlurClass = () => {
+        if (modalDisplay === 'show') {
+            return 'blurComponent';
+        } else {
+            return '';
+        }
+    }
 
     return (
-        <Catalogue>
+        <Catalogue className={determineOverlayBlurClass()}>
             {/* Need to map over state results to display each individual book component  */}
             {
             bookList.length === 0
             ?
-            <h3>Start adding some books!</h3>
+            <h3 className="catalogue-intro-message">Start adding some books!</h3>
             :
             bookList.map(book => {
                 //look up why spreading book object into props works for destructuring
@@ -27,18 +36,30 @@ const CatalogueBooks = () => {
 
 
 const Catalogue = styled.main`
-    width: 600px;
+    width: 540px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 80vh;
     overflow-y: scroll;
+    height: 80vh;
     scrollbar-color: #5d6f83 transparent;  /* Firefox */
-
     &::-webkit-scrollbar { 
         background: transparent;  /* Safari and Chrome */
+    }
+    @media (max-width: 860px) {
+        min-height: 20vh;
+        height: 100vh;
+        margin-bottom: 50px;
+    }
+    @media (max-width: 560px) {
+        width: 95%;
+    }
+    .catalogue-intro-message {
+        font-size: 1.5rem;
+        margin: auto;
+    }
 `
 
 export default CatalogueBooks;

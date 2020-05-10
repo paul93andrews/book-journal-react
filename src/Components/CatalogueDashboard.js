@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 import styled from 'styled-components';
@@ -15,10 +15,20 @@ const CatalogueDashboard = () => {
         dispatch(trackCurrentPage('cataloguePage'));
     }, [])
 
+    const modalDisplay = useSelector(state => state.displayChanges[0].descriptionModal);
+
+    const determineOverlayBlurClass = () => {
+        if (modalDisplay === 'show') {
+            return 'blurComponent';
+        } else {
+            return '';
+        }
+    }
+
     return (
         <Dashboard>
-            <h1>Welcome to your collection of books</h1>
-            <CatalogueBooks />
+            <h1 className={determineOverlayBlurClass()}>Welcome to your collection of books</h1>
+            <CatalogueBooks/>
             <AddDescriptionModal />
         </Dashboard>
     )
@@ -28,9 +38,13 @@ const Dashboard = styled.section`
     @media (min-width: 860px) {
         width: 63%;
     }
+    @media (max-width: 860px) {
+        position: relative;
+    }
     h1 {
         font-size: 2rem;
         text-align: center;
+        padding: 0 7.5px;
     }
 `
 

@@ -46,10 +46,14 @@ const BookItem = styled.article`
     height: 310px;
     min-height: 310px;
     display: flex;
+    margin-top: 15px;
     margin-bottom: 15px;
     background: white;
     border-radius: 6px;
     transition: box-shadow .2s ease,transform .2s ease,-webkit-transform .2s ease;
+    @media (max-width: 560px) {
+        width: 96%;
+    }
     &:hover,
     &:active {
         transform: translateY(-8px);
@@ -58,6 +62,9 @@ const BookItem = styled.article`
     .img {
         width: 20%;
         overflow: hidden;
+        @media (max-width: 400px) {
+            display: none;
+        }
         img {
             height: 100%;
             width: auto;
@@ -72,10 +79,17 @@ const BookItem = styled.article`
         display: flex;
         flex-direction: column;
         position: relative;
+        @media (max-width: 400px) {
+            width: 100%;
+            padding-right: 5px;
+        }
         h4 {
             font-size: 1.25rem;
             margin-bottom: 10px;
             margin-top: 0;
+            @media (max-width: 560px) {
+                font-size: 1rem;
+            }
         }
         h5 {
             margin: 0
@@ -90,6 +104,15 @@ const BookItem = styled.article`
             &.user-description {
                 max-height: 120px;
                 overflow-y: scroll;
+                @media (max-width: 560px) {
+                    max-height: 80px;
+                }
+            }
+            &:not(.user-description) {
+                margin-bottom: 7px;
+                @media (max-width: 400px) {
+                    margin-bottom: 0;
+                }
             }
         }
         .button-container {

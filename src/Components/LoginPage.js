@@ -83,7 +83,7 @@ const LoginPage = ({ startLogin, startLoginGuest })  => (
         <LoginSection>
             <div>
                 <h1>Paul's Book Catalogue React Project</h1>
-                <h3>I've created this project to practice several skills related to programming in React. Everything from database storage and authentication, Redux, Hooks, Snapshot & Unit Testing, and Styled Components are used within this project. Continue as a guest to explore or login with a Gmail account for page load persistence experience.</h3>
+                <h3>I've created this project to practice several skills related to programming in React. Everything from database storage and authentication, Redux, Hooks, Snapshot & Unit Testing, and Styled Components are used within this project. Continue as a guest to explore or login with a Gmail account for a more persistent experience.</h3>
             </div>
             <LoginButton onClick={startLogin}>Login Here</LoginButton>
             <LoginButton onClick={startLoginGuest}>Guest?</LoginButton>
