@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { trackCurrentPage } from '../actions/displayChanges';
 
 const JournalHome = () => {
+    
     const dispatch = useDispatch();
 
     useEffect(() => {

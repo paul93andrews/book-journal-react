@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { startRemoveSelectedBook } from '../actions/bookCatalogue';
 import { displayDescriptionModal } from '../actions/displayChanges';
@@ -106,6 +106,9 @@ const BookItem = styled.article`
                 overflow-y: scroll;
                 @media (max-width: 560px) {
                     max-height: 80px;
+                }
+                &::-webkit-scrollbar { 
+                    background: transparent;  /* Safari and Chrome */
                 }
             }
             &:not(.user-description) {

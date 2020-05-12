@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt:400,600|Source+Serif+Pro:400,700&display=swap');
 
-
-
 // font-family: 'Source Serif Pro', serif;
 // font-family: 'Prompt', sans-serif;
 html {
@@ -10,6 +8,18 @@ html {
 
 * {
     box-sizing: border-box;
+    outline-color: #f8598b;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 body,

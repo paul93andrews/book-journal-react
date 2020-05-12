@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
 const JournalHeader = ({ startLogout, displayChanges }) => {
-
+    
     const searchErrorModalState = displayChanges[0].searchErrorModal;
     const descriptionModalState = displayChanges[0].descriptionModal;
 

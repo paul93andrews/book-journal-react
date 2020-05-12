@@ -23,7 +23,6 @@ export const startLogout = () => {
 
 export const startLoginGuest = () => {
     return () => {
-        console.log('fired?');
         return firebase.auth().signInAnonymously();
     }
 }

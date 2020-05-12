@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import DescriptionLengthTracker from './DescriptionLengthTracker';
-
 import { hideDescriptionModal } from '../actions/displayChanges';
 import { startAddDescription } from '../actions/bookCatalogue';
 import { startRemoveSelectedBook } from '../actions/bookCatalogue';
@@ -42,7 +41,6 @@ const AddDescriptionModal = () => {
             dispatch(updatingDescriptionValue());
             setValue(e.target.value);
         } else if (e.target.value.length >= 105) {
-            console.log((e.target.value).length);
             return null;
         }
     }

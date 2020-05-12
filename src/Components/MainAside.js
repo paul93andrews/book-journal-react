@@ -3,6 +3,13 @@ import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const MainAsideSection = () => (
+    <MainAside>
+        <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
+        <p>Coded with Love by: Paul Andrews :)</p>
+    </MainAside>
+);
+
 const MainAside = styled.aside`
     width: 100%;
     display: flex;
@@ -29,12 +36,5 @@ const MainAside = styled.aside`
         }
     }
 `;
-
-const MainAsideSection = () => (
-    <MainAside>
-        <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
-        <p>Coded with Love by: Paul Andrews :)</p>
-    </MainAside>
-);
 
 export default MainAsideSection;

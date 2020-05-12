@@ -20,7 +20,6 @@ export const startAddBook = (expenseData = {}) => {
             description = ','
         } = expenseData;
         const book = { goodReadsID, title, author, year, image, description }
-        console.log(book);
 
         return database.ref(`users/${uid}/books`).push(book).then((ref) => {
             dispatch(addBook({

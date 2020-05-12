@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 
@@ -19,14 +19,12 @@ const CatalogueBooks = () => {
 
     return (
         <Catalogue className={determineOverlayBlurClass()}>
-            {/* Need to map over state results to display each individual book component  */}
             {
             bookList.length === 0
             ?
             <h3 className="catalogue-intro-message">Start adding some books!</h3>
             :
             bookList.map(book => {
-                //look up why spreading book object into props works for destructuring
                 return <Book {...book} key={book.id}/>
             })
             }

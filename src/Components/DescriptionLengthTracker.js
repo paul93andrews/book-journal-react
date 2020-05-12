@@ -1,11 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
 import styled from 'styled-components';
- 
 
 const DescriptionLengthTracker = ({ descriptionLength }) => {
-
 
     const classNameAddedToTrackerDiv = descriptionLength >= 105 ? 'limit-message-container' : '';
 
