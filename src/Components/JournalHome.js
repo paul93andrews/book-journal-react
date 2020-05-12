@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { trackCurrentPage } from '../actions/displayChanges';
 
 const JournalHome = () => {
-    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const JournalHome = () => {
         <JournalMain>
             <div>
                 <FontAwesomeIcon icon="book-reader" size="8x" color="#f8598b" />
-                <p>Welcome to my project! Take a look around each of the pages if you have a second. Go look for some books on our search page or keep tabs on ones you've read recently on our catalogue page. Have fun.</p>
+                <p>Welcome to my project! Take a look around each of the pages if you have a second. Go look for some books on our search page or keep tabs on ones you've read recently on our catalogue page. Have fun and check out my GitHub Repo <a href="https://github.com/paul93andrews/book-journal-react" target="_blank">here</a>.</p>
             </div>
             <p className="creator-stamp">{`Coded with Love by: Paul Andrews :)`}</p>
         </JournalMain>
@@ -51,6 +51,16 @@ const JournalMain = styled.main`
         font-family: 'Prompt', sans-serif;
         font-size: 1rem;
         margin-top: 40px;
+        a {
+            color: #f8598b;
+            text-decoration: none;
+            font-weight: 600;
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+            } 
+        }
     }
     .creator-stamp {
         width: 100%;
